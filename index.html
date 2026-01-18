@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Production Indonesia | Event Organizer & Interior Design</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary-navy: #0a1f44; /* Warna Corporate Biru Gelap */
+            --accent-gold: #c5a059;   /* Warna Emas Elegan */
+            --text-grey: #555555;
+            --bg-light: #f8f9fa;
+        }
+        
+        body { font-family: 'Inter', sans-serif; color: #333; overflow-x: hidden; }
+
+        /* NAVBAR */
+        .navbar { background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.05); padding: 15px 0; }
+        .navbar-brand { font-weight: 800; font-size: 1.5rem; color: var(--primary-navy); letter-spacing: -0.5px; }
+        .navbar-brand span { color: var(--accent-gold); }
+        .nav-link { font-weight: 600; color: var(--primary-navy); margin: 0 10px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-gold); }
+        .btn-consult { background-color: var(--primary-navy); color: white; border-radius: 50px; padding: 10px 25px; font-weight: 600; transition: 0.3s; }
+        .btn-consult:hover { background-color: var(--accent-gold); color: white; transform: translateY(-2px); }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(rgba(10, 31, 68, 0.85), rgba(10, 31, 68, 0.7)), 
+                        url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+        .hero h1 { font-weight: 800; font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; font-weight: 300; }
+        .hero-btn { background: var(--accent-gold); color: #000; padding: 15px 40px; border-radius: 5px; text-decoration: none; font-weight: 700; transition: 0.3s; border: none; }
+        .hero-btn:hover { background: white; color: var(--primary-navy); }
+
+        /* SERVICES SECTION */
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            height: 100%;
+            border-bottom: 3px solid transparent;
+        }
+        .service-card:hover { transform: translateY(-10px); border-bottom: 3px solid var(--accent-gold); }
+        .icon-box { font-size: 3rem; color: var(--accent-gold); margin-bottom: 20px; }
+        .service-title { font-weight: 700; font-size: 1.25rem; color: var(--primary-navy); margin-bottom: 15px; }
+
+        /* PORTFOLIO HIGHLIGHT */
+        .portfolio-item { position: relative; overflow: hidden; border-radius: 10px; margin-bottom: 24px; }
+        .portfolio-item img { width: 100%; height: 300px; object-fit: cover; transition: 0.5s; }
+        .portfolio-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px; color: white; opacity: 1; transition: 0.3s;
+        }
+        .portfolio-item:hover img { transform: scale(1.1); }
+
+        /* CLIENTS */
+        .client-logo { opacity: 0.6; transition: 0.3s; max-height: 60px; filter: grayscale(100%); }
+        .client-logo:hover { opacity: 1; filter: grayscale(0%); }
+
+        /* FOOTER */
+        footer { background-color: var(--primary-navy); color: white; padding: 60px 0 20px; }
+        footer h5 { color: var(--accent-gold); font-weight: 700; margin-bottom: 20px; }
+        footer a { color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; }
+        footer a:hover { color: var(--accent-gold); }
+        .social-link { font-size: 1.5rem; margin-right: 15px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+        }
+/* --- TAMBAHAN ANIMASI PREMIUM --- */
+
+/* 1. Preloader (Layar Loading) */
+#preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #ffffff;
+    z-index: 99999; /* Paling atas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out;
+}
+.spinner-logo {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--accent-gold); /* Warna Emas */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 2. Hover Icon Dinamis (Service Card) */
+/* Saat kartu disorot, ikon akan membesar sedikit & naik */
+.service-card:hover .icon-box i {
+    transform: scale(1.2) translateY(-5px); 
+    display: inline-block;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek membal (bouncy) halus */
+}
+
+/* 3. Hover Button (Efek Glow) */
+.btn-consult {
+    position: relative;
+    overflow: hidden;
+}
+.btn-consult::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+}
+.btn-consult:hover::after {
+    left: 100%; /* Efek kilatan cahaya lewat */
+}
+
+/* 4. Portfolio Zoom Halus */
+.portfolio-item img {
+    transform: scale(1);
+    transition: transform 0.6s ease; /* Lebih lambat biar elegan */
+}
+.portfolio-item:hover img {
+    transform: scale(1.08); /* Zoom dikit aja, jangan lebay */
+}
+    </style>
+</head>
+<body>
+<div id="preloader">
+    <div class="text-center">
+        <div class="spinner-logo mb-3 mx-auto"></div>
+        <div class="fw-bold" style="color: var(--primary-navy); letter-spacing: 2px;">LOADING</div>
+    </div>
+</div>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                A PRODUCTION <span>INDONESIA</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portofolio</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="https://wa.me/6287853118311" class="btn btn-consult shadow">Hubungi Kami</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="badge bg-warning text-dark mb-3 px-3 py-2 rounded-pill fw-bold">YOUR EVENT SOLUTION & BEYOND</div>
+                    <h1>Mitra Terpercaya untuk Event Organizer & Interior Design</h1>
+                    <p>Menghadirkan pengalaman visual terbaik dan eksekusi acara yang presisi. Dari panggung megah hingga interior ruang yang estetik.</p>
+                    <div class="d-flex gap-3">
+                        <a href="https://wa.me/6287853118311" class="hero-btn">Konsultasi Gratis</a>
+                        <a href="portfolio.html" class="btn btn-outline-light px-4 py-3 fw-bold rounded-1">Lihat Portofolio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded shadow-lg" alt="About A Production">
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <h6 class="text-uppercase text-warning fw-bold mb-2">Tentang A Production Indonesia</h6>
+                    <h2 class="display-6 fw-bold text-dark mb-4">Unity is Strength. Kolaborasi Menciptakan Karya Luar Biasa.</h2>
+                    <p class="text-muted mb-4">A Production Indonesia adalah perusahaan penyedia kebutuhan perlengkapan acara, pameran, dan desain interior yang melayani seluruh Indonesia. Kami telah dipercaya menangani berbagai konferensi medis internasional, pameran korporat, hingga perancangan ruang.</p>
+                    <ul class="list-unstyled mb-4 text-muted">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i> Resmi & Terdaftar (NIB & NPWP Verified)</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i> Tim Profesional & Berpengalaman</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i> Layanan One Stop Solution</li>
+                    </ul>
+                    <a href="about.html" class="btn btn-dark rounded-pill px-4">Selengkapnya Tentang Kami</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h6 class="fw-bold text-warning text-uppercase">Layanan Kami</h6>
+                <h2 class="fw-bold text-dark">Solusi Lengkap Kebutuhan Anda</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="icon-box"><i class="bi bi-calendar-event"></i></div>
+                        <h4 class="service-title">Event Organizer</h4>
+                        <p class="text-muted small">Konferensi, Simposium, Workshop, hingga Gathering Perusahaan dengan manajemen acara yang rapi.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="icon-box"><i class="bi bi-easel2"></i></div>
+                        <h4 class="service-title">Booth & Exhibition</h4>
+                        <p class="text-muted small">Pembuatan Booth Pameran (Special Design), R8 System, dan perlengkapan display produk.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="icon-box"><i class="bi bi-house-door"></i></div>
+                        <h4 class="service-title">Interior Design</h4>
+                        <p class="text-muted small">Perancangan dan eksekusi interior untuk kantor, ruang komersial, dan hunian yang estetis dan fungsional.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="icon-box"><i class="bi bi-speaker"></i></div>
+                        <h4 class="service-title">Stage & Equipment</h4>
+                        <p class="text-muted small">Penyewaan Sound System, Lighting, Videotron, dan Panggung (Rigging/Decoration).</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="icon-box"><i class="bi bi-megaphone"></i></div>
+                        <h4 class="service-title">Advertising & Branding</h4>
+                        <p class="text-muted small">Layanan periklanan, graphic design, dokumentasi video, dan pembuatan materi promosi.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="icon-box"><i class="bi bi-airplane"></i></div>
+                        <h4 class="service-title">Tour & Travel</h4>
+                        <p class="text-muted small">Paket perjalanan wisata, reservasi tiket, dan pemandu wisata profesional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <h6 class="fw-bold text-warning text-uppercase">Portofolio Terbaru</h6>
+                    <h2 class="fw-bold text-dark">Jejak Karya Kami</h2>
+                </div>
+                <a href="portfolio.html" class="text-decoration-none fw-bold text-dark">Lihat Semua <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="portfolio-item shadow">
+                        <img src="https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?auto=format&fit=crop&w=600&q=80" alt="Event Medical">
+                        <div class="portfolio-overlay">
+                            <h5 class="fw-bold m-0">AOCNMB Bali 2024</h5>
+                            <small>International Congress</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="portfolio-item shadow">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Interior Office">
+                        <div class="portfolio-overlay">
+                            <h5 class="fw-bold m-0">Office Interior Project</h5>
+                            <small>Interior Design</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="portfolio-item shadow">
+                        <img src="https://images.unsplash.com/photo-1560523160-754a9e25c68f?auto=format&fit=crop&w=600&q=80" alt="Exhibition Booth">
+                        <div class="portfolio-overlay">
+                            <h5 class="fw-bold m-0">Kalbe Farma Booth</h5>
+                            <small>Exhibition Design</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-3">A PRODUCTION <span class="text-white">INDONESIA</span></h5>
+                    <p class="small opacity-75">Your Event Solution & Beyond. Kami siap membantu mewujudkan acara dan ruang impian Anda dengan standar profesional.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5>Navigasi</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html">Beranda</a></li>
+                        <li class="mb-2"><a href="about.html">Tentang Kami</a></li>
+                        <li class="mb-2"><a href="services.html">Layanan</a></li>
+                        <li class="mb-2"><a href="portfolio.html">Portofolio</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5>Layanan</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="services.html">Event Organizer</a></li>
+                        <li class="mb-2"><a href="services.html">Interior Design</a></li>
+                        <li class="mb-2"><a href="services.html">Exhibition Booth</a></li>
+                        <li class="mb-2"><a href="services.html">Tour & Travel</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Hubungi Kami</h5>
+                    <ul class="list-unstyled small opacity-75">
+                        <li class="mb-3 d-flex gap-2"><i class="bi bi-geo-alt-fill text-warning"></i> Surabaya, Jawa Timur, Indonesia</li>
+                        <li class="mb-3 d-flex gap-2"><i class="bi bi-envelope-fill text-warning"></i> aproduction.ind@gmail.com</li>
+                        <li class="mb-3 d-flex gap-2"><i class="bi bi-whatsapp text-warning"></i> +62 878-5311-8311 (Adil)</li>
+                        <li class="mb-3 d-flex gap-2"><i class="bi bi-whatsapp text-warning"></i> +62 812-3437-1110 (Adhi)</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary mt-5">
+            <div class="text-center small opacity-50">
+                &copy; 2026 A Production Indonesia. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script><script>
+    // Script untuk menghilangkan Preloader saat web selesai dimuat
+    window.addEventListener("load", function() {
+        const preloader = document.getElementById("preloader");
+        preloader.style.opacity = "0"; // Fade out
+        setTimeout(() => {
+            preloader.style.display = "none"; // Hilang total
+        }, 500); // Tunggu animasi fade out selesai (0.5 detik)
+    });
+</script>
+
+</body>
+</html>

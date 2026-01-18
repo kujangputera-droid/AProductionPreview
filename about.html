@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tentang Kami | A Production Indonesia</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary-navy: #0a1f44;
+            --accent-gold: #c5a059;
+            --bg-light: #f8f9fa;
+        }
+        
+        body { font-family: 'Inter', sans-serif; color: #333; overflow-x: hidden; }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #ffffff; z-index: 99999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.5s ease-out;
+        }
+        .spinner-logo {
+            width: 50px; height: 50px; border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--accent-gold); border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- NAVBAR --- */
+        .navbar { background: white; box-shadow: 0 4px 20px rgba(0,0,0,0.05); padding: 15px 0; }
+        .navbar-brand { font-weight: 800; font-size: 1.5rem; color: var(--primary-navy); letter-spacing: -0.5px; }
+        .navbar-brand span { color: var(--accent-gold); }
+        .nav-link { font-weight: 600; color: var(--primary-navy); margin: 0 10px; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-gold); }
+        .btn-consult { background-color: var(--primary-navy); color: white; border-radius: 50px; padding: 10px 25px; font-weight: 600; transition: 0.3s; }
+        .btn-consult:hover { background-color: var(--accent-gold); transform: translateY(-2px); }
+
+        /* --- HEADER HALAMAN --- */
+        .page-header {
+            background: linear-gradient(rgba(10, 31, 68, 0.9), rgba(10, 31, 68, 0.8)), 
+                        url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+            color: white;
+            text-align: center;
+        }
+        .breadcrumb { justify-content: center; background: transparent; padding: 0; }
+        .breadcrumb-item a { color: var(--accent-gold); text-decoration: none; }
+        .breadcrumb-item.active { color: rgba(255,255,255,0.7); }
+
+        /* --- SECTIONS --- */
+        .section-padding { padding: 80px 0; }
+        
+        /* Visi Misi Card */
+        .vm-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            height: 100%;
+            border-top: 4px solid var(--accent-gold);
+            transition: 0.3s;
+        }
+        .vm-card:hover { transform: translateY(-5px); }
+        
+        /* Team Profile Styles */
+        .team-member { text-align: center; margin-bottom: 30px; }
+        
+        /* Gaya Foto Pimpinan (Lebih Besar) */
+        .leader-img {
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 6px solid var(--accent-gold); /* Bingkai Emas */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        /* Gaya Foto Staff (Placeholder) */
+        .staff-img {
+            width: 150px; height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid #eee; /* Bingkai Biasa */
+            background-color: #f0f0f0;
+            filter: grayscale(100%); 
+            transition: 0.3s;
+        }
+        .staff-img:hover { filter: grayscale(0%); border-color: var(--accent-gold); }
+
+        .team-name { font-weight: 700; font-size: 1.2rem; margin-bottom: 5px; color: var(--primary-navy); }
+        .team-role { color: var(--accent-gold); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* FOOTER */
+        footer { background-color: var(--primary-navy); color: white; padding: 60px 0 20px; }
+        footer h5 { color: var(--accent-gold); font-weight: 700; margin-bottom: 20px; }
+        footer a { color: rgba(255,255,255,0.7); text-decoration: none; transition: 0.3s; }
+        footer a:hover { color: var(--accent-gold); }
+        .social-link { font-size: 1.5rem; margin-right: 15px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+        <div class="text-center">
+            <div class="spinner-logo mb-3 mx-auto"></div>
+            <div class="fw-bold" style="color: var(--primary-navy); letter-spacing: 2px;">LOADING</div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                A PRODUCTION <span>INDONESIA</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">Tentang Kami</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portofolio</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="https://wa.me/6287853118311" class="btn btn-consult shadow">Hubungi Kami</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="fw-bold display-5 mb-3">Tentang Kami</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Beranda</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tentang Kami</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded shadow-lg" alt="Team Meeting">
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <h6 class="text-warning fw-bold text-uppercase">Siapa Kami</h6>
+                    <h2 class="fw-bold mb-4" style="color: var(--primary-navy);">Partner Event Terpercaya Skala Nasional</h2>
+                    <p class="text-muted mb-4">
+    A Production Indonesia hadir sebagai solusi lengkap kebutuhan acara Anda. Kami bukan sekadar vendor, melainkan partner strategis yang memastikan setiap detail, mulai dari panggung megah hingga kenyamanan interior, tereksekusi dengan sempurna.
+</p>
+                    <p class="text-muted mb-4">
+                        Melayani klien di seluruh Indonesia, kami telah dipercaya menangani berbagai event berskala besar, pameran medis internasional, hingga renovasi ruang komersial. Ketepatan waktu dan kualitas material adalah janji kami.
+                    </p>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center gap-3">
+                                <h2 class="fw-bold text-warning mb-0">5+</h2>
+                                <p class="small mb-0 fw-bold">Tahun<br>Pengalaman</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center gap-3">
+                                <h2 class="fw-bold text-warning mb-0">100+</h2>
+                                <p class="small mb-0 fw-bold">Proyek<br>Selesai</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="vm-card">
+                        <i class="bi bi-eye-fill display-4 text-warning mb-3"></i>
+                        <h3 class="fw-bold mb-3">Visi Kami</h3>
+                        <p class="text-muted">Menjadi perusahaan kontraktor pameran dan manajemen event terdepan di Indonesia yang dikenal karena inovasi desain, ketangguhan struktur, dan pelayanan profesional.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="vm-card">
+                        <i class="bi bi-rocket-takeoff-fill display-4 text-warning mb-3"></i>
+                        <h3 class="fw-bold mb-3">Misi Kami</h3>
+                        <ul class="list-unstyled text-muted">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i> Memberikan kualitas produksi terbaik dengan harga kompetitif.</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i> Menjaga ketepatan waktu dalam setiap instalasi dan pengerjaan.</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-warning me-2"></i> Membangun hubungan jangka panjang dengan klien melalui kepercayaan.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container text-center">
+            <h6 class="text-warning fw-bold text-uppercase">Tim Kami</h6>
+            <h2 class="fw-bold mb-5" style="color: var(--primary-navy);">Orang di Balik Layar</h2>
+            
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-4">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80" class="leader-img" alt="Bapak Adhi">
+                        <h3 class="fw-bold text-dark mb-1">Bapak Adhi</h3>
+                        <p class="text-warning fw-bold ls-1">Pimpinan / Director</p>
+                        <a href="https://wa.me/6281234371110" class="btn btn-sm btn-outline-dark rounded-pill mt-2 px-4">Hubungi Saya</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center g-4">
+                
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=300&q=80" class="staff-img" alt="Staff 1">
+                        <h5 class="team-name fs-5">Nama Tim</h5>
+                        <p class="team-role small">Divisi Produksi</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=300&q=80" class="staff-img" alt="Staff 2">
+                        <h5 class="team-name fs-5">Nama Tim</h5>
+                        <p class="team-role small">Divisi Lapangan</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=300&q=80" class="staff-img" alt="Staff 3">
+                        <h5 class="team-name fs-5">Nama Tim</h5>
+                        <p class="team-role small">Divisi Kreatif</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-6">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=300&q=80" class="staff-img" alt="Staff 4">
+                        <h5 class="team-name fs-5">Nama Tim</h5>
+                        <p class="team-role small">Administrasi</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4">
+                    <h5 class="mb-3">A PRODUCTION <span class="text-white">INDONESIA</span></h5>
+                    <p class="small opacity-75">Your Event Solution & Beyond. Kami siap membantu mewujudkan acara dan ruang impian Anda dengan standar profesional.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5>Navigasi</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html">Beranda</a></li>
+                        <li class="mb-2"><a href="about.html">Tentang Kami</a></li>
+                        <li class="mb-2"><a href="services.html">Layanan</a></li>
+                        <li class="mb-2"><a href="portfolio.html">Portofolio</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <h5>Layanan</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="services.html">Event Organizer</a></li>
+                        <li class="mb-2"><a href="services.html">Interior Design</a></li>
+                        <li class="mb-2"><a href="services.html">Exhibition Booth</a></li>
+                        <li class="mb-2"><a href="services.html">Tour & Travel</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5>Hubungi Kami</h5>
+                    <ul class="list-unstyled small opacity-75">
+                        <li class="mb-3 d-flex gap-2"><i class="bi bi-geo-alt-fill text-warning"></i> Surabaya, Jawa Timur, Indonesia</li>
+                        <li class="mb-3 d-flex gap-2"><i class="bi bi-envelope-fill text-warning"></i> aproduction.ind@gmail.com</li>
+                        <li class="mb-3 d-flex gap-2"><i class="bi bi-whatsapp text-warning"></i> +62 878-5311-8311 (Adil)</li>
+                        <li class="mb-3 d-flex gap-2"><i class="bi bi-whatsapp text-warning"></i> +62 812-3437-1110 (Adhi)</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary mt-5">
+            <div class="text-center small opacity-50">
+                &copy; 2026 A Production Indonesia. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener("load", function() {
+            const preloader = document.getElementById("preloader");
+            preloader.style.opacity = "0";
+            setTimeout(() => { preloader.style.display = "none"; }, 500);
+        });
+    </script>
+</body>
+</html>
