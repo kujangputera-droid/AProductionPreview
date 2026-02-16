@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Jangan indeks folder sistem
+Disallow: /assets/
+Disallow: /readme
+
+# Beri tahu lokasi peta jalan
+Sitemap: https://aproductionindonesia.biz.id/sitemap.xml
